@@ -49,7 +49,7 @@ public class InfluxLineProtocolReader extends AbstractControllerService implemen
             .name("line-protocol-character-set")
             .displayName("Character Set")
             .description("The Character Encoding that is used to decode the Line Protocol data")
-            .expressionLanguageSupported(ExpressionLanguageScope.VARIABLE_REGISTRY)
+            .expressionLanguageSupported(ExpressionLanguageScope.ENVIRONMENT)
             .addValidator(StandardValidators.CHARACTER_SET_VALIDATOR)
             .defaultValue(StandardCharsets.UTF_8.name())
             .required(true)

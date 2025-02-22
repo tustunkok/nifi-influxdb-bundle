@@ -26,7 +26,7 @@ import com.influxdb.client.domain.Dialect;
 import org.influxdata.nifi.processors.internal.AbstractGetInfluxDatabase_2;
 import org.influxdata.nifi.processors.internal.AbstractInfluxDatabaseProcessor;
 
-import org.apache.nifi.annotation.behavior.EventDriven;
+
 import org.apache.nifi.annotation.behavior.WritesAttribute;
 import org.apache.nifi.annotation.behavior.WritesAttributes;
 import org.apache.nifi.annotation.documentation.CapabilityDescription;
@@ -47,7 +47,7 @@ import org.apache.nifi.processor.util.StandardValidators;
                 attribute = AbstractInfluxDatabaseProcessor.INFLUX_DB_ERROR_MESSAGE,
                 description = "InfluxDB error message"),
 })
-@EventDriven
+
 public class GetInfluxDatabaseRecord_2 extends AbstractGetInfluxDatabase_2 {
 
     private static final List<PropertyDescriptor> PROPERTY_DESCRIPTORS;

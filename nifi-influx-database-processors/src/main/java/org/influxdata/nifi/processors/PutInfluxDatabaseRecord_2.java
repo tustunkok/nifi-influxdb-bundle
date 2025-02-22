@@ -36,7 +36,7 @@ import org.influxdata.nifi.util.PropertyValueUtils.IllegalConfigurationException
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.nifi.annotation.behavior.EventDriven;
+
 import org.apache.nifi.annotation.behavior.InputRequirement;
 import org.apache.nifi.annotation.behavior.SupportsBatching;
 import org.apache.nifi.annotation.behavior.WritesAttribute;
@@ -70,7 +70,7 @@ import static org.influxdata.nifi.util.InfluxDBUtils.TIMESTAMP_FIELD;
 /**
  * @author Jakub Bednar (bednar@github) (16/07/2019 14:04)
  */
-@EventDriven
+
 @InputRequirement(InputRequirement.Requirement.INPUT_REQUIRED)
 @SupportsBatching
 @Tags({"influxdb", "measurement", "insert", "write", "put", "record", "timeseries", "2.0"})

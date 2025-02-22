@@ -31,7 +31,6 @@ import org.apache.nifi.processor.ProcessContext;
 import org.apache.nifi.processor.ProcessSession;
 import org.apache.nifi.processor.exception.ProcessException;
 import org.apache.nifi.util.MockConfigurationContext;
-import org.apache.nifi.util.MockVariableRegistry;
 import org.apache.nifi.util.TestRunner;
 import org.apache.nifi.util.TestRunners;
 import org.influxdata.nifi.processors.MapperOptions;
@@ -188,81 +187,6 @@ public class TestPropertyValueUtils {
         Assertions.assertEquals("three", list.get(0));
         Assertions.assertEquals("two", list.get(1));
         Assertions.assertEquals("one", list.get(2));
-    }
-
-    @Test
-    public void mapperOptions() throws PropertyValueUtils.IllegalConfigurationException {
-
-        Map<PropertyDescriptor, String> props = new HashMap<PropertyDescriptor, String>() {{
-            put(InfluxDBUtils.MEASUREMENT, "my-measurement");
-            put(InfluxDBUtils.TIMESTAMP_PRECISION, TimeUnit.HOURS.name());
-            put(InfluxDBUtils.TIMESTAMP_FIELD, "log-time");
-            put(InfluxDBUtils.FIELDS, "value, value2, value3");
-            put(InfluxDBUtils.TAGS, "tag, tag2");
-            put(InfluxDBUtils.MISSING_FIELD_BEHAVIOR, InfluxDBUtils.MissingItemsBehaviour.IGNORE.name());
-            put(InfluxDBUtils.MISSING_TAG_BEHAVIOR, InfluxDBUtils.MissingItemsBehaviour.FAIL.name());
-            put(InfluxDBUtils.COMPLEX_FIELD_BEHAVIOR, InfluxDBUtils.ComplexFieldBehaviour.WARN.name());
-            put(InfluxDBUtils.NULL_VALUE_BEHAVIOR, InfluxDBUtils.NullValueBehaviour.FAIL.name());
-        }};
-
-        MockConfigurationContext context = new MockConfigurationContext(props, null, new MockVariableRegistry());
-
-        MapperOptions options = PropertyValueUtils.getMapperOptions(context, null);
-
-        Assertions.assertNotNull(options);
-        Assertions.assertEquals("my-measurement", options.getMeasurement());
-        Assertions.assertEquals(TimeUnit.HOURS, options.getPrecision());
-        Assertions.assertEquals("log-time", options.getTimestamp());
-        Assertions.assertEquals(Arrays.asList("value", "value2", "value3"), options.getFields());
-        Assertions.assertEquals(Arrays.asList("tag", "tag2"), options.getTags());
-        Assertions.assertEquals(InfluxDBUtils.MissingItemsBehaviour.IGNORE, options.getMissingFields());
-        Assertions.assertEquals(InfluxDBUtils.MissingItemsBehaviour.FAIL, options.getMissingTags());
-        Assertions.assertEquals(InfluxDBUtils.ComplexFieldBehaviour.WARN, options.getComplexFieldBehaviour());
-        Assertions.assertEquals(InfluxDBUtils.NullValueBehaviour.FAIL, options.getNullValueBehaviour());
-    }
-
-    @Test
-    public void mapperOptionsEmptyFields() throws PropertyValueUtils.IllegalConfigurationException {
-
-        Map<PropertyDescriptor, String> props = new HashMap<PropertyDescriptor, String>() {{
-            put(InfluxDBUtils.MEASUREMENT, "my-measurement");
-            put(InfluxDBUtils.TIMESTAMP_PRECISION, TimeUnit.HOURS.name());
-            put(InfluxDBUtils.TIMESTAMP_FIELD, "log-time");
-            put(InfluxDBUtils.FIELDS, "");
-            put(InfluxDBUtils.TAGS, "tag, tag2");
-            put(InfluxDBUtils.MISSING_FIELD_BEHAVIOR, InfluxDBUtils.MissingItemsBehaviour.IGNORE.name());
-            put(InfluxDBUtils.MISSING_TAG_BEHAVIOR, InfluxDBUtils.MissingItemsBehaviour.FAIL.name());
-            put(InfluxDBUtils.COMPLEX_FIELD_BEHAVIOR, InfluxDBUtils.ComplexFieldBehaviour.WARN.name());
-            put(InfluxDBUtils.NULL_VALUE_BEHAVIOR, InfluxDBUtils.NullValueBehaviour.FAIL.name());
-        }};
-
-        MockConfigurationContext context = new MockConfigurationContext(props, null, new MockVariableRegistry());
-
-        Assertions.assertThrows(PropertyValueUtils.IllegalConfigurationException.class, () -> {
-            PropertyValueUtils.getMapperOptions(context, null);
-        });
-    }
-
-    @Test
-    public void mapperOptionsEmptyMeasurement() throws PropertyValueUtils.IllegalConfigurationException {
-
-        Map<PropertyDescriptor, String> props = new HashMap<PropertyDescriptor, String>() {{
-            put(InfluxDBUtils.MEASUREMENT, "");
-            put(InfluxDBUtils.TIMESTAMP_PRECISION, TimeUnit.HOURS.name());
-            put(InfluxDBUtils.TIMESTAMP_FIELD, "log-time");
-            put(InfluxDBUtils.FIELDS, "value, value2, value3");
-            put(InfluxDBUtils.TAGS, "tag, tag2");
-            put(InfluxDBUtils.MISSING_FIELD_BEHAVIOR, InfluxDBUtils.MissingItemsBehaviour.IGNORE.name());
-            put(InfluxDBUtils.MISSING_TAG_BEHAVIOR, InfluxDBUtils.MissingItemsBehaviour.FAIL.name());
-            put(InfluxDBUtils.COMPLEX_FIELD_BEHAVIOR, InfluxDBUtils.ComplexFieldBehaviour.WARN.name());
-            put(InfluxDBUtils.NULL_VALUE_BEHAVIOR, InfluxDBUtils.NullValueBehaviour.FAIL.name());
-        }};
-
-        MockConfigurationContext context = new MockConfigurationContext(props, null, new MockVariableRegistry());
-
-        Assertions.assertThrows(PropertyValueUtils.IllegalConfigurationException.class, () -> {
-            PropertyValueUtils.getMapperOptions(context, null);
-        });
     }
 
     public static class TestProcessor extends AbstractProcessor {

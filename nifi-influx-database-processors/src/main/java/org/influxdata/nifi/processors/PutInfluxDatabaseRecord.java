@@ -37,7 +37,7 @@ import edu.umd.cs.findbugs.annotations.Nullable;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.apache.nifi.annotation.behavior.EventDriven;
+
 import org.apache.nifi.annotation.behavior.InputRequirement;
 import org.apache.nifi.annotation.behavior.SupportsBatching;
 import org.apache.nifi.annotation.behavior.WritesAttribute;
@@ -75,7 +75,7 @@ import static org.influxdata.nifi.util.PropertyValueUtils.getEnumValue;
 import static org.influxdb.BatchOptions.DEFAULT_BATCH_INTERVAL_DURATION;
 import static org.influxdb.BatchOptions.DEFAULT_JITTER_INTERVAL_DURATION;
 
-@EventDriven
+
 @InputRequirement(InputRequirement.Requirement.INPUT_REQUIRED)
 @SupportsBatching
 @Tags({"influxdb", "measurement", "insert", "write", "put", "record", "timeseries"})

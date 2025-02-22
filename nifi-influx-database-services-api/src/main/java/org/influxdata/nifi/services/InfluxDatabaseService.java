@@ -60,7 +60,7 @@ public interface InfluxDatabaseService extends ControllerService {
             .description("InfluxDB URL to connect to. Eg: http://influxdb:8086")
             .defaultValue("http://localhost:8086")
             .required(true)
-            .expressionLanguageSupported(ExpressionLanguageScope.VARIABLE_REGISTRY)
+            .expressionLanguageSupported(ExpressionLanguageScope.ENVIRONMENT)
             .addValidator(StandardValidators.URL_VALIDATOR)
             .build();
 
@@ -79,7 +79,7 @@ public interface InfluxDatabaseService extends ControllerService {
             .displayName("Username")
             .required(false)
             .description("Username which is used to authorize against the InfluxDB")
-            .expressionLanguageSupported(ExpressionLanguageScope.VARIABLE_REGISTRY)
+            .expressionLanguageSupported(ExpressionLanguageScope.ENVIRONMENT)
             .addValidator(StandardValidators.NON_BLANK_VALIDATOR)
             .build();
 
@@ -89,7 +89,7 @@ public interface InfluxDatabaseService extends ControllerService {
             .required(false)
             .description("Password for the username which is used to authorize against the InfluxDB."
                     + " If the authorization fail the FlowFile will be penalized and routed to 'retry' relationship.")
-            .expressionLanguageSupported(ExpressionLanguageScope.VARIABLE_REGISTRY)
+            .expressionLanguageSupported(ExpressionLanguageScope.ENVIRONMENT)
             .addValidator(StandardValidators.NON_BLANK_VALIDATOR)
             .sensitive(true)
             .build();

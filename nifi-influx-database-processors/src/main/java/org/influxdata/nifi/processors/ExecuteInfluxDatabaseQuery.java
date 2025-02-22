@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
 import org.influxdata.nifi.processors.internal.AbstractInfluxDatabaseProcessor;
 
 import com.google.gson.Gson;
-import org.apache.nifi.annotation.behavior.EventDriven;
+
 import org.apache.nifi.annotation.behavior.InputRequirement;
 import org.apache.nifi.annotation.behavior.SupportsBatching;
 import org.apache.nifi.annotation.behavior.WritesAttribute;
@@ -59,7 +59,7 @@ import org.influxdb.dto.Query;
 import org.influxdb.dto.QueryResult;
 
 @InputRequirement(InputRequirement.Requirement.INPUT_ALLOWED)
-@EventDriven
+
 @SupportsBatching
 @Tags({"influxdb", "measurement", "get", "read", "query", "timeseries"})
 @CapabilityDescription("Processor to execute InfluxDB query from the content of a FlowFile (preferred) or a scheduled query.  Please check details of the supported queries in InfluxDB documentation (https://www.influxdb.com/).")

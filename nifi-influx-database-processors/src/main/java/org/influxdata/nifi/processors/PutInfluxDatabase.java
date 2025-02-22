@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 import org.influxdata.nifi.processors.internal.AbstractInfluxDatabaseProcessor;
 import org.influxdata.nifi.util.PropertyValueUtils;
 
-import org.apache.nifi.annotation.behavior.EventDriven;
+
 import org.apache.nifi.annotation.behavior.InputRequirement;
 import org.apache.nifi.annotation.behavior.SupportsBatching;
 import org.apache.nifi.annotation.behavior.WritesAttribute;
@@ -52,7 +52,7 @@ import org.influxdb.InfluxDB;
 import org.influxdb.InfluxDBIOException;
 
 @InputRequirement(InputRequirement.Requirement.INPUT_REQUIRED)
-@EventDriven
+
 @SupportsBatching
 @Tags({"influxdb", "measurement","insert", "write", "put", "timeseries"})
 @CapabilityDescription("Processor to write the content of a FlowFile in 'line protocol'.  Please check details of the 'line protocol' in InfluxDB documentation (https://www.influxdb.com/). "

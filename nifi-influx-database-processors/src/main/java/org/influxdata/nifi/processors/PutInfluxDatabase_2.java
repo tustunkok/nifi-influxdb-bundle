@@ -32,7 +32,7 @@ import org.influxdata.nifi.processors.internal.AbstractInfluxDatabaseProcessor_2
 import org.influxdata.nifi.util.PropertyValueUtils;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.nifi.annotation.behavior.EventDriven;
+
 import org.apache.nifi.annotation.behavior.InputRequirement;
 import org.apache.nifi.annotation.behavior.SupportsBatching;
 import org.apache.nifi.annotation.behavior.WritesAttribute;
@@ -62,7 +62,7 @@ import static org.influxdata.nifi.processors.internal.AbstractInfluxDatabaseProc
  * @author Jakub Bednar (bednar@github) (11/07/2019 07:44)
  */
 @InputRequirement(InputRequirement.Requirement.INPUT_REQUIRED)
-@EventDriven
+
 @SupportsBatching
 @Tags({"influxdb", "measurement", "insert", "write", "put", "timeseries", "2.0"})
 @CapabilityDescription("Processor to write the content of a FlowFile in 'line protocol'. Please check details of the 'line protocol' in InfluxDB 2.0 documentation (https://www.influxdb.com/). "

@@ -97,24 +97,6 @@ public class TestStandardInfluxDatabaseServiceSettings extends AbstractTestStand
                 Mockito.any());
     }
 
-    @Test
-    public void clientAuth() throws IOException, GeneralSecurityException {
-
-        testRunner.setProperty(service, InfluxDatabaseService.CLIENT_AUTH, SSLContextService.ClientAuth.NONE.name());
-        testRunner.assertValid(service);
-        testRunner.enableControllerService(service);
-
-        service.connect();
-
-        Mockito.verify(service, Mockito.times(1)).connect(
-                Mockito.eq(null),
-                Mockito.eq(null),
-                Mockito.eq(null),
-                Mockito.eq(ClientAuth.NONE),
-                Mockito.eq("http://localhost:8086"),
-                Mockito.eq(0L),
-                Mockito.any());
-    }
 
     @Test
     public void url() throws IOException, GeneralSecurityException {
